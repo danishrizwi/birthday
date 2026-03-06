@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Lora:wght@400;500;600&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink-light: #ffd6e8;
+            --pink-main: #ff9fc5;
+            --pink-dark: #e85c9f;
+            --white: #fef9f7;
+            --gold: #d4af37;
+            --silver: #e8e8e8;
+            --text-dark: #4a3a4a;
+            --cream: #fffaf5;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--white) 100%);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* ===== PARTICLES ===== */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--pink-main);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            text-align: center;
+            padding: 60px 40px;
+            position: relative;
+            z-index: 10;
+            background: linear-gradient(135deg, rgba(255, 214, 232, 0.3) 0%, rgba(255, 159, 197, 0.1) 100%);
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            color: var(--pink-dark);
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .subtitle {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.3rem;
+            color: var(--pink-main);
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            position: relative;
+            z-index: 20;
+        }
+
+        /* ===== GALLERY CARDS ===== */
+        .gallery-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+        }
+
+        .card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            animation: cardEnter 0.8s ease-out both;
+        }
+
+        @keyframes cardEnter {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Alternate layout */
+        .card:nth-child(even) {
+            grid-template-columns: 1fr 1fr;
+            direction: rtl;
+        }
+
+        .card:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        /* ===== FRAME STYLES ===== */
+        .image-frame {
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-frame img {
+            display: block;
+            transition: transform 0.5s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-frame:hover img {
+            transform: scale(1.08);
+        }
+
+        /* ===== FRAME 1: HEART SHAPE ===== */
+        .frame-heart {
+            width: 400px;
+            height: 420px;
+            margin: 0 auto;
+        }
+
+        .frame-heart svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 20px 60px rgba(232, 92, 159, 0.3));
+        }
+
+        .frame-heart img {
+            width: 85%;
+            height: 85%;
+            clip-path: polygon(50% 100%, 0% 60%, 0% 35%, 25% 0%, 50% 20%, 75% 0%, 100% 35%, 100% 60%);
+        }
+
+        .frame-heart:hover {
+            transform: scale(1.05);
+        }
+
+        .frame-heart:hover svg {
+            filter: drop-shadow(0 30px 80px rgba(232, 92, 159, 0.4));
+        }
+
+        /* ===== FRAME 2: CIRCLE ===== */
+        .frame-circle {
+            width: 380px;
+            height: 380px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 
+                0 0 0 18px var(--white),
+                0 0 0 24px var(--gold),
+                0 25px 70px rgba(212, 175, 55, 0.3);
+            border: 8px solid var(--gold);
+        }
+
+        .frame-circle:hover {
+            transform: scale(1.05) rotateZ(5deg);
+            box-shadow: 
+                0 0 0 18px var(--white),
+                0 0 0 24px var(--gold),
+                0 35px 90px rgba(212, 175, 55, 0.4);
+        }
+
+        /* ===== FRAME 3: ROUNDED RECTANGLE ===== */
+        .frame-rounded-rect {
+            width: 380px;
+            height: 420px;
+            margin: 0 auto;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 
+                0 0 0 16px var(--white),
+                0 0 0 22px #ff9fc5,
+                0 25px 70px rgba(255, 159, 197, 0.3);
+            position: relative;
+        }
+
+        .frame-rounded-rect::before,
+        .frame-rounded-rect::after {
+            content: '';
+            position: absolute;
+            background: radial-gradient(circle, rgba(255, 159, 197, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .frame-rounded-rect::before {
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+        }
+
+        .frame-rounded-rect::after {
+            bottom: -50px;
+            left: -50px;
+            width: 150px;
+            height: 150px;
+        }
+
+        .frame-rounded-rect:hover {
+            transform: scale(1.05) translateY(-8px);
+            box-shadow: 
+                0 0 0 16px var(--white),
+                0 0 0 22px #ff9fc5,
+                0 35px 90px rgba(255, 159, 197, 0.4);
+        }
+
+        /* ===== FRAME 4: DIAMOND ===== */
+        .frame-diamond {
+            width: 350px;
+            height: 450px;
+            margin: 0 auto;
+            position: relative;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(240, 201, 86, 0.3);
+        }
+
+        .frame-diamond::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: var(--white);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            border: 4px solid #f0c956;
+            z-index: -1;
+            box-shadow: 0 30px 80px rgba(240, 201, 86, 0.3);
+        }
+
+        .frame-diamond:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        .frame-diamond:hover::before {
+            box-shadow: 0 40px 100px rgba(240, 201, 86, 0.4);
+        }
+
+        /* ===== FRAME 5: OCTAGON ===== */
+        .frame-octagon {
+            width: 380px;
+            height: 380px;
+            margin: 0 auto;
+            overflow: hidden;
+            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+            box-shadow: 
+                0 0 0 15px var(--white),
+                0 0 0 22px #c77d99,
+                0 25px 70px rgba(199, 125, 153, 0.3);
+            position: relative;
+        }
+
+        .frame-octagon:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 0 0 15px var(--white),
+                0 0 0 22px #c77d99,
+                0 35px 90px rgba(199, 125, 153, 0.4);
+        }
+
+        /* ===== FRAME 6: STAR ===== */
+        .frame-star {
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            position: relative;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(216, 165, 165, 0.3);
+        }
+
+        .frame-star::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: var(--white);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            border: 5px solid #d8a5a5;
+            z-index: -1;
+            box-shadow: 0 25px 70px rgba(216, 165, 165, 0.3);
+        }
+
+        .frame-star:hover {
+            transform: scale(1.05) rotateZ(-5deg);
+        }
+
+        .frame-star:hover::before {
+            box-shadow: 0 35px 90px rgba(216, 165, 165, 0.4);
+        }
+
+        /* ===== MESSAGE CARDS ===== */
+        .message-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 45px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(232, 92, 159, 0.12);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: messageSlide 0.8s ease-out both;
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .card:nth-child(even) .message-box {
+            animation: messageSlideLeft 0.8s ease-out both;
+        }
+
+        @keyframes messageSlideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .message-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 80px rgba(232, 92, 159, 0.18);
+        }
+
+        .message-box {
+            border-left: 6px solid var(--pink-main);
+        }
+
+        .card:nth-child(1) .message-box { border-left-color: var(--gold); }
+        .card:nth-child(2) .message-box { border-left-color: #d4a574; }
+        .card:nth-child(3) .message-box { border-left-color: #ff9fc5; }
+        .card:nth-child(4) .message-box { border-left-color: #f0c956; }
+        .card:nth-child(5) .message-box { border-left-color: #c77d99; }
+        .card:nth-child(6) .message-box { border-left-color: #d8a5a5; }
+
+        .message-box::before {
+            content: '"';
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            color: rgba(232, 92, 159, 0.15);
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            z-index: 0;
+        }
+
+        .message-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--pink-dark);
+            margin-bottom: 15px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .message-text {
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+        }
+
+        /* ===== FINAL SECTION ===== */
+        .final-section {
+            margin-top: 100px;
+            padding: 80px 60px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 214, 232, 0.3) 0%, rgba(255, 159, 197, 0.1) 100%);
+            border-radius: 30px;
+            animation: cardEnter 0.8s ease-out 0.7s both;
+        }
+
+        .final-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            color: var(--pink-dark);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .final-section p {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .final-section .special-message {
+            font-size: 1.4rem;
+            color: var(--pink-main);
+            margin-top: 30px;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        /* ===== ROMANTIC QUESTION SECTION ===== */
+        .romantic-question {
+            margin-top: 100px;
+            padding: 80px 60px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 159, 197, 0.25) 0%, rgba(255, 214, 232, 0.35) 100%);
+            border-radius: 30px;
+            animation: cardEnter 0.8s ease-out 0.8s both;
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .romantic-question h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            color: var(--pink-dark);
+            margin-bottom: 60px;
+            font-weight: 700;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+            margin-top: 20px;
+            position: relative;
+            min-height: 100px;
+            padding: 30px;
+        }
+
+        .btn-yes {
+            padding: 14px 42px;
+            background: linear-gradient(135deg, var(--pink-main), var(--pink-dark));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-family: 'Quicksand', sans-serif;
+            cursor: pointer;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            box-shadow: 0 12px 35px rgba(232, 92, 159, 0.3);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-transform: uppercase;
+            position: relative;
+            z-index: 10;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.12) translateY(-5px);
+            box-shadow: 0 20px 50px rgba(232, 92, 159, 0.5);
+        }
+
+        .btn-no {
+            padding: 14px 42px;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--pink-dark);
+            border: 3px solid var(--pink-dark);
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-family: 'Quicksand', sans-serif;
+            cursor: grab;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            box-shadow: 0 10px 30px rgba(232, 92, 159, 0.2);
+            transition: all 0.15s ease;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 10;
+            flex-shrink: 0;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .btn-no:active {
+            cursor: grabbing;
+        }
+
+        .btn-no.moving {
+            position: fixed;
+        }
+
+        .success-message-final {
+            margin-top: 60px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            display: none;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .success-message-final h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--pink-dark);
+            margin-bottom: 15px;
+        }
+
+        .success-message-final p {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            font-style: italic;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 50px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--pink-light) 0%, rgba(255, 159, 197, 0.5) 100%);
+            color: var(--text-dark);
+            border-top: 2px solid rgba(255, 159, 197, 0.2);
+            font-size: 0.95rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        /* Large Tablets and Small Desktops */
+        @media (max-width: 1024px) {
+            .card {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .card:nth-child(even) {
+                direction: ltr;
+            }
+
+            .main-container {
+                padding: 40px 30px;
+            }
+
+            .frame-heart,
+            .frame-circle,
+            .frame-rounded-rect,
+            .frame-diamond,
+            .frame-octagon,
+            .frame-star {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .message-box {
+                padding: 35px 30px;
+            }
+
+            .buttons-container {
+                gap: 15px;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+        }
+
+        /* Tablets */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            header {
+                padding: 40px 20px;
+            }
+
+            .main-container {
+                padding: 30px 20px;
+            }
+
+            .gallery-cards {
+                gap: 50px;
+            }
+
+            .frame-heart {
+                width: 280px;
+                height: 300px;
+            }
+
+            .frame-circle {
+                width: 280px;
+                height: 280px;
+            }
+
+            .frame-rounded-rect {
+                width: 280px;
+                height: 320px;
+            }
+
+            .frame-diamond {
+                width: 260px;
+                height: 340px;
+            }
+
+            .frame-octagon {
+                width: 280px;
+                height: 280px;
+            }
+
+            .frame-star {
+                width: 280px;
+                height: 280px;
+            }
+
+            .message-box {
+                padding: 25px 20px;
+                font-size: 0.9rem;
+            }
+
+            .message-title {
+                font-size: 1.2rem;
+                margin-bottom: 12px;
+            }
+
+            .message-text {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+
+            .final-section {
+                padding: 50px 25px;
+            }
+
+            .final-section h2 {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+            }
+
+            .final-section p {
+                font-size: 1rem;
+            }
+
+            .romantic-question {
+                padding: 50px 25px;
+                min-height: 350px;
+            }
+
+            .romantic-question h2 {
+                font-size: 2.5rem;
+                margin-bottom: 40px;
+            }
+
+            .btn-yes, .btn-no {
+                padding: 12px 30px;
+                font-size: 0.85rem;
+            }
+
+            .buttons-container {
+                gap: 12px;
+                padding: 20px;
+            }
+
+            footer {
+                padding: 40px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Small Phones */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+                letter-spacing: 2px;
+            }
+
+            header {
+                padding: 30px 15px;
+            }
+
+            .main-container {
+                padding: 20px 15px;
+            }
+
+            .gallery-cards {
+                gap: 40px;
+            }
+
+            .frame-heart {
+                width: 100%;
+                max-width: 250px;
+                height: 270px;
+            }
+
+            .frame-circle {
+                width: 100%;
+                max-width: 250px;
+                height: 250px;
+            }
+
+            .frame-rounded-rect {
+                width: 100%;
+                max-width: 250px;
+                height: 290px;
+            }
+
+            .frame-diamond {
+                width: 100%;
+                max-width: 230px;
+                height: 300px;
+            }
+
+            .frame-octagon {
+                width: 100%;
+                max-width: 250px;
+                height: 250px;
+            }
+
+            .frame-star {
+                width: 100%;
+                max-width: 250px;
+                height: 250px;
+            }
+
+            .message-box {
+                padding: 20px 15px;
+                font-size: 0.85rem;
+                margin-bottom: 20px;
+            }
+
+            .message-title {
+                font-size: 1.1rem;
+                margin-bottom: 10px;
+            }
+
+            .message-text {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            .message-box::before {
+                font-size: 2.5rem;
+                top: -10px;
+                left: 5px;
+            }
+
+            .final-section {
+                padding: 40px 20px;
+            }
+
+            .final-section h2 {
+                font-size: 2rem;
+                margin-bottom: 12px;
+            }
+
+            .final-section p {
+                font-size: 0.95rem;
+                margin-bottom: 10px;
+            }
+
+            .final-section .special-message {
+                font-size: 1.1rem;
+                margin-top: 15px;
+            }
+
+            .romantic-question {
+                padding: 40px 20px;
+                min-height: 300px;
+                margin-top: 60px;
+            }
+
+            .romantic-question h2 {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+
+            .btn-yes, .btn-no {
+                padding: 11px 28px;
+                font-size: 0.8rem;
+                letter-spacing: 1px;
+            }
+
+            .buttons-container {
+                gap: 10px;
+                padding: 15px;
+                min-height: 80px;
+            }
+
+            footer {
+                padding: 30px 15px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Extra Small Phones */
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 0.8rem;
+                letter-spacing: 1.5px;
+            }
+
+            header {
+                padding: 25px 12px;
+            }
+
+            .main-container {
+                padding: 15px 12px;
+            }
+
+            .gallery-cards {
+                gap: 30px;
+            }
+
+            .frame-heart,
+            .frame-circle,
+            .frame-rounded-rect,
+            .frame-diamond,
+            .frame-octagon,
+            .frame-star {
+                width: 100%;
+                max-width: 220px;
+                height: auto;
+            }
+
+            .message-box {
+                padding: 15px 12px;
+                font-size: 0.8rem;
+                margin-bottom: 15px;
+            }
+
+            .message-title {
+                font-size: 1rem;
+                margin-bottom: 8px;
+            }
+
+            .message-text {
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+
+            .final-section {
+                padding: 30px 15px;
+            }
+
+            .final-section h2 {
+                font-size: 1.8rem;
+                margin-bottom: 10px;
+            }
+
+            .final-section p {
+                font-size: 0.9rem;
+                margin-bottom: 8px;
+            }
+
+            .romantic-question {
+                padding: 30px 15px;
+                min-height: 280px;
+                margin-top: 50px;
+            }
+
+            .romantic-question h2 {
+                font-size: 1.8rem;
+                margin-bottom: 25px;
+            }
+
+            .btn-yes, .btn-no {
+                padding: 10px 22px;
+                font-size: 0.75rem;
+                letter-spacing: 0.5px;
+            }
+
+            .buttons-container {
+                gap: 8px;
+                padding: 12px;
+                min-height: 70px;
+            }
+
+            footer {
+                padding: 25px 12px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div class="particles" id="particlesContainer"></div>
+
+    <!-- Header -->
+    <header>
+        <h1>Happy Birthday Danish</h1>
+        <p class="subtitle">A Celebration of You ✨</p>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <div class="gallery-cards">
+            <!-- Card 1: HEART FRAME -->
+            <div class="card">
+                <div class="image-frame frame-heart">
+                    <svg viewBox="0 0 100 100" preserveAspectRatio="none" style="fill: none; stroke: var(--gold); stroke-width: 2;">
+                        <path d="M50,100 Q30,75 20,60 Q10,45 10,35 Q10,20 25,20 Q35,20 50,35 Q65,20 75,20 Q90,20 90,35 Q90,45 80,60 Q70,75 50,100"/>
+                    </svg>
+                    <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&h=600&fit=crop" alt="Memory 1" loading="lazy">
+                </div>
+                <div class="message-content">
+                    <div class="message-box">
+                        <div class="message-title">A Perfect Moment</div>
+                        <p class="message-text">You light up every moment with your presence. Your smile is a gift that brightens everyone's day, and your heart is pure gold.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: CIRCLE FRAME -->
+            <div class="card">
+                <div class="image-frame frame-circle">
+                    <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=600&h=600&fit=crop" alt="Memory 2" loading="lazy">
+                </div>
+                <div class="message-content">
+                    <div class="message-box">
+                        <div class="message-title">Your Grace & Beauty</div>
+                        <p class="message-text">Every moment spent with you is a treasure. Your kindness knows no bounds, and your love touches everyone around you in ways you'll never fully understand.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: ROUNDED RECTANGLE FRAME -->
+            <div class="card">
+                <div class="image-frame frame-rounded-rect">
+                    <img src="https://images.unsplash.com/photo-1489749798305-4fea3ba63d60?w=600&h=600&fit=crop" alt="Memory 3" loading="lazy">
+                </div>
+                <div class="message-content">
+                    <div class="message-box">
+                        <div class="message-title">Endless Joy</div>
+                        <p class="message-text">You bring endless laughter and joy wherever you go. Your infectious enthusiasm and genuine care make this world a more beautiful place.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: DIAMOND FRAME -->
+            <div class="card">
+                <div class="image-frame frame-diamond">
+                    <img src="https://images.unsplash.com/photo-1529633456407-f6b0abd9552d?w=600&h=600&fit=crop" alt="Memory 4" loading="lazy">
+                </div>
+                <div class="message-content">
+                    <div class="message-box">
+                        <div class="message-title">Forever Grateful</div>
+                        <p class="message-text">Thank you for being the amazing person you are. Your strength, wisdom, and loving spirit inspire us to be better every single day.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: OCTAGON FRAME -->
+            <div class="card">
+                <div class="image-frame frame-octagon">
+                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&h=600&fit=crop" alt="Memory 5" loading="lazy">
+                </div>
+                <div class="message-content">
+                    <div class="message-box">
+                        <div class="message-title">Your Spirit Shines</div>
+                        <p class="message-text">The world is brighter because you're in it. Your passion, your dreams, and your beautiful soul make you truly extraordinary and unforgettable.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6: STAR FRAME -->
+            <div class="card">
+                <div class="image-frame frame-star">
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=600&fit=crop" alt="Memory 6" loading="lazy">
+                </div>
+                <div class="message-content">
+                    <div class="message-box">
+                        <div class="message-title">Happy Birthday to You</div>
+                        <p class="message-text">On your special day, we celebrate everything that makes you YOU. You deserve all the happiness, love, and success in this world. Here's to another year of being amazing!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Message Section -->
+        <div class="final-section">
+            <h2>With All My Love 💕</h2>
+            <p>You are extraordinary in every way.</p>
+            <p>Thank you for being the beautiful soul that you are.</p>
+            <p class="special-message">Here's to celebrating YOU today and every day!</p>
+        </div>
+
+        <!-- Romantic Question Section -->
+        <div class="romantic-question">
+            <h2>Do You Love Me? 💘</h2>
+            <div class="buttons-container">
+                <button class="btn-yes" onclick="showSuccess()">YES 💕</button>
+                <button class="btn-no" id="noBtn">NO</button>
+            </div>
+            <div class="success-message-final" id="successMsg">
+                <h3>I Knew It! 💝</h3>
+                <p>Thank you for making every moment special! You're the best!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with 💕 because you deserve to be celebrated</p>
+    </footer>
+
+    <script>
+        // ===== CREATE PARTICLES =====
+        const particlesContainer = document.getElementById('particlesContainer');
+        function createParticles() {
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // ===== ROMANTIC QUESTION LOGIC =====
+        const noBtn = document.getElementById('noBtn');
+
+        // Position NO button randomly on page
+        function moveButton() {
+            noBtn.classList.add('moving');
+            
+            // Random position on screen
+            const randomX = Math.random() * (window.innerWidth - 150);
+            const randomY = Math.random() * (window.innerHeight - 100) + 50;
+            
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        // Move on hover
+        noBtn.addEventListener('mouseover', moveButton);
+        
+        // Move on click attempt
+        noBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            moveButton();
+        });
+
+        // Move on touch (mobile)
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveButton();
+        });
+
+        function showSuccess() {
+            const buttonsContainer = document.querySelector('.buttons-container');
+            const successMsg = document.getElementById('successMsg');
+            
+            buttonsContainer.style.display = 'none';
+            successMsg.style.display = 'block';
+            
+            // Add confetti effect
+            createConfetti();
+        }
+
+        // ===== CONFETTI EFFECT =====
+        function createConfetti() {
+            const colors = ['#ff9fc5', '#d4af37', '#ffd6e8', '#e85c9f'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = '-10px';
+                confetti.style.borderRadius = '50%';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.zIndex = '999';
+                confetti.style.animation = `fall ${2 + Math.random() * 1}s linear forwards`;
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        // ===== CONFETTI ANIMATION =====
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(${window.innerHeight + 20}px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
